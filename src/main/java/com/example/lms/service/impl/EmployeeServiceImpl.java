@@ -32,8 +32,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(Integer empId) {
-        Employee byId = employeeRepo.findById(empId).get();
-        return byId;
+        Optional<Employee> byId = employeeRepo.findById(empId);
+
+        if (byId.isPresent()){
+            Employee employee = byId.get();
+            return employee;
+        }
+        return null;
     }
 
     @Override
